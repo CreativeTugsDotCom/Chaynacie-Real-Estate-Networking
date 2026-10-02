@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaynacie Real Estate Networking App - UX Blueprint & MVP Wireframes</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        wireframe: {
+                            bg: '#f8fafc',
+                            card: '#ffffff',
+                            border: '#e2e8f0',
+                            text: '#1e293b',
+                            muted: '#64748b',
+                            accent: '#3b82f6',
+                            highlight: '#f59e0b',
+                            flag: '#ef4444'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .phone-viewport {
+            width: 385px;
+            height: 780px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 12px #1e293b;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .flag-tag {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen">
+
+    <!-- Top Header / Bar -->
+    <header class="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-sky-500/20">
+                    C
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-bold text-lg text-white tracking-tight">Chaynacie Real Estate Networking</h1>
+                        <span class="bg-sky-500/10 text-sky-400 border border-sky-500/30 text-xs px-2 py-0.5 rounded-full font-mono">MVP Discovery Wireframe</span>
+                    </div>
+                    <p class="text-xs text-slate-400">Client: Chaynacie • Elyria, Ohio 44035 • Buying Stage: Planning & Researching</p>
+                </div>
+            </div>
+
+            <!-- Global View Controls -->
+            <div class="flex items-center space-x-2 bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs">
+                <button onclick="switchTab('prototype')" id="nav-btn-prototype" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all bg-sky-600 text-white shadow-sm">
+                    <i class="fa-solid fa-mobile-screen mr-1.5"></i> Interactive Simulator
+                </button>
+                <button onclick="switchTab('sitemap')" id="nav-btn-sitemap" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-sitemap mr-1.5"></i> Architecture & Sitemap
+                </button>
+                <button onclick="switchTab('userflows')" id="nav-btn-userflows" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-diagram-project mr-1.5"></i> Core User Flows
+                </button>
+                <button onclick="switchTab('monetization')" id="nav-btn-monetization" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-coins mr-1.5"></i> Monetization Matrix
+                </button>
+                <button onclick="switchTab('discovery')" id="nav-btn-discovery" class="tab-btn px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-white">
+                    <i class="fa-solid fa-clipboard-question mr-1.5"></i> Client Discovery Flags
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- TAB 1: INTERACTIVE MOBILE SIMULATOR -->
+        <section id="tab-prototype" class="tab-content block">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Screen Selector Controls Sidebar -->
+                <div class="lg:col-span-4 bg-slate-800/60 border border-slate-700/60 rounded-2xl p-5 space-y-4 backdrop-blur">
+                    <div class="flex items-center justify-between">
+                        <h2 class="text-sm font-bold text-slate-200 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-list-check text-sky-400"></i> Primary Mobile Screens
+                        </h2>
+                        <span class="text-xs bg-slate-700 text-slate-300 px-2 py-0.5 rounded-full font-mono">12 Wireframes</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        Click any screen below to simulate the low-to-mid fidelity mobile wireframe. Annotations reveal logical UX decisions and pending discovery requirements.
+                    </p>
+
+                    <div class="space-y-1.5 max-h-[600px] overflow-y-auto pr-1 custom-scrollbar text-xs">
+                        <button onclick="loadScreen('splash')" id="scr-btn-splash" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-power-off text-sky-400 w-4"></i> 1. Splash / Launch</span>
+                            <span class="flag-tag bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Confirmed</span>
+                        </button>
+
+                        <button onclick="loadScreen('onboarding')" id="scr-btn-onboarding" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-compass text-sky-400 w-4"></i> 2. Onboarding Sequence</span>
+                            <span class="flag-tag bg-blue-500/20 text-blue-400 border border-blue-500/30">Logical UX</span>
+                        </button>
+
+                        <button onclick="loadScreen('auth')" id="scr-btn-auth" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-user-lock text-sky-400 w-4"></i> 3. Account Creation / Login</span>
+                            <span class="flag-tag bg-amber-500/20 text-amber-400 border border-amber-500/30">Confirm Method</span>
+                        </button>
+
+                        <button onclick="loadScreen('rolesetup')" id="scr-btn-rolesetup" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-id-badge text-sky-400 w-4"></i> 4. User Role & Profile Setup</span>
+                            <span class="flag-tag bg-amber-500/20 text-amber-400 border border-amber-500/30">Confirm Roles</span>
+                        </button>
+
+                        <button onclick="loadScreen('home')" id="scr-btn-home" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition bg-sky-900/40 border-sky-500/50 text-white">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-house-laptop text-sky-400 w-4"></i> 5. Home Networking Dashboard</span>
+                            <span class="flag-tag bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Core Anchor</span>
+                        </button>
+
+                        <button onclick="loadScreen('discover')" id="scr-btn-discover" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-magnifying-glass-location text-sky-400 w-4"></i> 6. Discover & Filter Search</span>
+                            <span class="flag-tag bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Core Anchor</span>
+                        </button>
+
+                        <button onclick="loadScreen('profile')" id="scr-btn-profile" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-user-gear text-sky-400 w-4"></i> 7. Professional Profile View</span>
+                            <span class="flag-tag bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Core Anchor</span>
+                        </button>
+
+                        <button onclick="loadScreen('connectflow')" id="scr-btn-connectflow" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-user-plus text-sky-400 w-4"></i> 8. Connection Request Flow</span>
+                            <span class="flag-tag bg-blue-500/20 text-blue-400 border border-blue-500/30">Core Loop</span>
+                        </button>
+
+                        <button onclick="loadScreen('messaging')" id="scr-btn-messaging" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-comments text-sky-400 w-4"></i> 9. Messaging / Communication</span>
+                            <span class="flag-tag bg-purple-500/20 text-purple-400 border border-purple-500/30">Confirm Scope</span>
+                        </button>
+
+                        <button onclick="loadScreen('notifications')" id="scr-btn-notifications" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-bell text-sky-400 w-4"></i> 10. Notification Center</span>
+                            <span class="flag-tag bg-blue-500/20 text-blue-400 border border-blue-500/30">Logical UX</span>
+                        </button>
+
+                        <button onclick="loadScreen('monetization')" id="scr-btn-monetization" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-gem text-sky-400 w-4"></i> 11. Monetization Paywall & Ads</span>
+                            <span class="flag-tag bg-amber-500/20 text-amber-400 border border-amber-500/30">4 Options</span>
+                        </button>
+
+                        <button onclick="loadScreen('settings')" id="scr-btn-settings" class="scr-selector w-full text-left px-3 py-2.5 rounded-xl border border-slate-700/50 bg-slate-900/50 hover:bg-slate-700/50 flex items-center justify-between text-slate-200 font-medium transition">
+                            <span class="flex items-center gap-2.5"><i class="fa-solid fa-sliders text-sky-400 w-4"></i> 12. Account & App Settings</span>
+                            <span class="flag-tag bg-slate-500/20 text-slate-400 border border-slate-500/30">Standard</span>
+                        </button>
+                    </div>
+
+                    <!-- Screen Specification Card -->
+                    <div class="border-t border-slate-700/70 pt-4 mt-2">
+                        <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-2" id="spec-title">Screen Analysis & Rationale</h3>
+                        <div class="text-xs text-slate-300 space-y-2 leading-relaxed bg-slate-900/80 p-3 rounded-xl border border-slate-700/80" id="spec-body">
+                            <!-- Dynamic Content populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Phone Display Canvas -->
+                <div class="lg:col-span-8 flex flex-col items-center justify-center py-2">
+                    
+                    <!-- Phone Viewport -->
+                    <div class="phone-viewport text-slate-900 font-sans flex flex-col justify-between relative bg-slate-50 border-2 border-slate-300">
+                        
+                        <!-- Top Notch / Status Bar -->
+                        <div class="bg-slate-900 text-white px-6 pt-3 pb-2 flex items-center justify-between text-xs z-30 select-none">
+                            <span class="font-semibold text-xs font-mono">9:41</span>
+                            <div class="w-20 h-4 bg-slate-800 rounded-full mx-auto shadow-inner flex items-center justify-center">
+                                <div class="w-3 h-3 bg-slate-900 rounded-full"></div>
+                            </div>
+                            <div class="flex items-center space-x-1.5 text-[10px]">
+                                <i class="fa-solid fa-signal"></i>
+                                <i class="fa-solid fa-wifi"></i>
+                                <i class="fa-solid fa-battery-full"></i>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Screen Content Container -->
+                        <div id="phone-screen-content" class="flex-1 overflow-y-auto custom-scrollbar relative flex flex-col">
+                            <!-- Populated dynamically via JS -->
+                        </div>
+
+                        <!-- Bottom Navigation Bar (Shown on core app screens) -->
+                        <div id="phone-bottom-nav" class="bg-white border-t border-slate-200 px-3 py-2 flex items-center justify-around z-30 shadow-lg text-slate-600">
+                            <button onclick="loadScreen('home')" id="nav-item-home" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-600 transition">
+                                <i class="fa-solid fa-house text-base"></i>
+                                <span class="text-[10px] font-medium">Home</span>
+                            </button>
+                            <button onclick="loadScreen('discover')" id="nav-item-discover" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-600 transition">
+                                <i class="fa-solid fa-compass text-base"></i>
+                                <span class="text-[10px] font-medium">Discover</span>
+                            </button>
+                            <button onclick="loadScreen('connectflow')" id="nav-item-connections" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-600 transition">
+                                <i class="fa-solid fa-users-rectangle text-base"></i>
+                                <span class="text-[10px] font-medium">Network</span>
+                            </button>
+                            <button onclick="loadScreen('messaging')" id="nav-item-messages" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-600 transition">
+                                <i class="fa-solid fa-comment-dots text-base"></i>
+                                <span class="text-[10px] font-medium">Messages</span>
+                            </button>
+                            <button onclick="loadScreen('profile')" id="nav-item-profile" class="flex flex-col items-center gap-1 text-slate-400 hover:text-sky-600 transition">
+                                <i class="fa-solid fa-user text-base"></i>
+                                <span class="text-[10px] font-medium">Profile</span>
+                            </button>
+                        </div>
+
+                        <!-- Home Bar Indicator -->
+                        <div class="bg-white pb-2 pt-1 flex justify-center z-30">
+                            <div class="w-32 h-1 bg-slate-300 rounded-full"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 2: INFORMATION ARCHITECTURE & SITEMAP -->
+        <section id="tab-sitemap" class="tab-content hidden">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 backdrop-blur space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-sitemap text-sky-400"></i> App Information Architecture & Sitemap
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-1">
+                        Hierarchical structure mapping all top-level user paths, core hubs, secondary overlays, and monetization conversion gates.
+                    </p>
+                </div>
+
+                <!-- Interactive Sitemap Visual Tree -->
+                <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-6 overflow-x-auto">
+                    <div class="min-w-[850px]">
+                        
+                        <!-- Root Level -->
+                        <div class="flex justify-center mb-8">
+                            <div class="bg-gradient-to-r from-sky-600 to-indigo-600 text-white px-6 py-2.5 rounded-xl font-bold text-center shadow-lg border border-sky-400/30">
+                                Launch / Entry (Splash)
+                            </div>
+                        </div>
+
+                        <!-- Level 1 Branch: Auth & Setup -->
+                        <div class="grid grid-cols-2 gap-4 max-w-xl mx-auto mb-8 relative">
+                            <div class="bg-slate-800 border border-slate-700 p-3 rounded-lg text-center text-xs text-slate-200">
+                                <span class="font-bold block text-sky-400 mb-1">Onboarding Carousel</span>
+                                Discover → Connect → Engage
+                            </div>
+                            <div class="bg-slate-800 border border-slate-700 p-3 rounded-lg text-center text-xs text-slate-200">
+                                <span class="font-bold block text-sky-400 mb-1">Auth & Role Setup</span>
+                                Sign Up / Role / Profile Setup
+                            </div>
+                        </div>
+
+                        <!-- Bottom Navigation Anchor Hub -->
+                        <div class="bg-slate-900 border-2 border-sky-500/50 text-white py-2 px-4 rounded-xl text-center text-xs font-bold uppercase tracking-wider mb-8 shadow-md">
+                            Persistent Bottom Navigation Bar Hub
+                        </div>
+
+                        <!-- 5 Core Navigation Pillars -->
+                        <div class="grid grid-cols-5 gap-3">
+                            
+                            <!-- Pillar 1 -->
+                            <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl space-y-2">
+                                <div class="bg-sky-500/20 text-sky-300 font-bold text-xs p-2 rounded-md text-center border border-sky-500/30">
+                                    1. Home Dashboard
+                                </div>
+                                <ul class="text-[11px] text-slate-400 space-y-1.5 pl-2 list-disc list-inside">
+                                    <li>Quick Search Bar</li>
+                                    <li>Recommended Matches</li>
+                                    <li>Nearby Pros (Ohio/Local)</li>
+                                    <li>Recent Network Feed</li>
+                                    <li>Featured Members</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pillar 2 -->
+                            <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl space-y-2">
+                                <div class="bg-sky-500/20 text-sky-300 font-bold text-xs p-2 rounded-md text-center border border-sky-500/30">
+                                    2. Discover Hub
+                                </div>
+                                <ul class="text-[11px] text-slate-400 space-y-1.5 pl-2 list-disc list-inside">
+                                    <li>Role Filter (Realtor, etc.)</li>
+                                    <li>Location & Radius Filter</li>
+                                    <li>Specialization Tags</li>
+                                    <li>Proximity / Grid View</li>
+                                    <li>Direct "Connect" CTA</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pillar 3 -->
+                            <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl space-y-2">
+                                <div class="bg-sky-500/20 text-sky-300 font-bold text-xs p-2 rounded-md text-center border border-sky-500/30">
+                                    3. Connections Hub
+                                </div>
+                                <ul class="text-[11px] text-slate-400 space-y-1.5 pl-2 list-disc list-inside">
+                                    <li>Pending Requests</li>
+                                    <li>Active Connections</li>
+                                    <li>Sent Requests</li>
+                                    <li>Connection Context</li>
+                                    <li>Network Analytics</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pillar 4 -->
+                            <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl space-y-2">
+                                <div class="bg-sky-500/20 text-sky-300 font-bold text-xs p-2 rounded-md text-center border border-sky-500/30">
+                                    4. Messages Hub
+                                </div>
+                                <ul class="text-[11px] text-slate-400 space-y-1.5 pl-2 list-disc list-inside">
+                                    <li>Active Conversations</li>
+                                    <li>1-on-1 Direct Chat</li>
+                                    <li>Connection Inquiry Context</li>
+                                    <li>Unread Indicators</li>
+                                    <li><span class="text-amber-400 font-semibold">[Flagged]</span> Media/Group</li>
+                                </ul>
+                            </div>
+
+                            <!-- Pillar 5 -->
+                            <div class="bg-slate-900 border border-sky-500/30 p-3 rounded-xl space-y-2">
+                                <div class="bg-sky-500/20 text-sky-300 font-bold text-xs p-2 rounded-md text-center border border-sky-500/30">
+                                    5. Profile & Settings
+                                </div>
+                                <ul class="text-[11px] text-slate-400 space-y-1.5 pl-2 list-disc list-inside">
+                                    <li>Editable Professional Bio</li>
+                                    <li>Company & Experience</li>
+                                    <li>Notification Center</li>
+                                    <li>Monetization / Paywall</li>
+                                    <li>Account Settings</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: CORE USER FLOWS & CONNECTION STATE MACHINE -->
+        <section id="tab-userflows" class="tab-content hidden">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 backdrop-blur space-y-8">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-sky-400"></i> Primary User Journeys & Connection Logic
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-1">
+                        End-to-end task flows designed for real-estate professionals seeking networking matches and seamless outreach.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Flow 1: Onboarding & First Connection -->
+                    <div class="bg-slate-900/90 border border-slate-700/70 p-5 rounded-xl space-y-4">
+                        <h3 class="text-sm font-bold text-sky-400 flex items-center gap-2">
+                            <i class="fa-solid fa-user-plus"></i> Flow 1: New User Onboarding & First Network Outreach
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-300">
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">1</span>
+                                <span>Launch App → View 3-step value carousel → Tap "Get Started"</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">2</span>
+                                <span>Sign up with Email/Password or Social auth provider</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">3</span>
+                                <span>Select Primary Professional Role (e.g. Realtor, Lender, Investor)</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">4</span>
+                                <span>Enter Location (e.g. Elyria, OH), Company & Short Bio</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">5</span>
+                                <span>Land on Home Dashboard → Tap recommended professional profile</span>
+                            </div>
+                            <div class="flex items-center gap-3 bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50">
+                                <span class="w-6 h-6 rounded-full bg-sky-500 text-white font-bold flex items-center justify-center text-[10px]">6</span>
+                                <span>Tap "Connect" → Send optional introduction message → Connection Pending</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Flow 2: Connection State Machine -->
+                    <div class="bg-slate-900/90 border border-slate-700/70 p-5 rounded-xl space-y-4">
+                        <h3 class="text-sm font-bold text-sky-400 flex items-center gap-2">
+                            <i class="fa-solid fa-arrows-split-up-and-left"></i> Flow 2: Connection State Machine Logic
+                        </h3>
+                        <div class="space-y-3 text-xs text-slate-300">
+                            <div class="bg-slate-800/80 p-3 rounded-lg border-l-4 border-slate-500">
+                                <div class="font-bold text-slate-200">State A: Unconnected</div>
+                                <div class="text-slate-400 mt-1">Primary CTA: "Connect". Full profile preview visible according to privacy settings.</div>
+                            </div>
+                            <div class="bg-slate-800/80 p-3 rounded-lg border-l-4 border-amber-500">
+                                <div class="font-bold text-amber-300">State B: Connection Pending</div>
+                                <div class="text-slate-400 mt-1">Primary CTA changes to "Request Pending". User can withdraw request. Recipient receives notification.</div>
+                            </div>
+                            <div class="bg-slate-800/80 p-3 rounded-lg border-l-4 border-emerald-500">
+                                <div class="font-bold text-emerald-300">State C: Connected</div>
+                                <div class="text-slate-400 mt-1">Status changes to "Connected". Direct Messaging unlocked. Full contact preferences exposed.</div>
+                            </div>
+                            <div class="bg-slate-800/80 p-3 rounded-lg border-l-4 border-purple-500">
+                                <div class="font-bold text-purple-300">State D: Monetization Trigger (If Freemium Cap Exceeded)</div>
+                                <div class="text-slate-400 mt-1">If free user reaches daily connection limit (e.g. 5/day), prompt Subscription Modal.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: MONETIZATION MATRIX -->
+        <section id="tab-monetization" class="tab-content hidden">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 backdrop-blur space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-coins text-sky-400"></i> Monetization Architecture Options
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-1">
+                        The client selected 4 monetization avenues during initial inquiry. Here is how each option integrates into the mobile UX without causing friction.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Option 1 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-sky-400 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-credit-card"></i> 1. Paid App Download
+                            </h3>
+                            <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-mono">Upfront Pay</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            App costs $2.99–$9.99 on Apple App Store / Google Play before installation.
+                        </p>
+                        <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/50 text-[11px] text-slate-400 space-y-1">
+                            <div class="text-amber-400 font-semibold"><i class="fa-solid fa-triangle-exclamation"></i> UX Strategy Tradeoff:</div>
+                            <div>High friction for growth. Professional networking apps rely on network effects; paid downloads significantly reduce initial user acquisition in Ohio markets.</div>
+                        </div>
+                    </div>
+
+                    <!-- Option 2 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-sky-400 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-rectangle-ad"></i> 2. In-App Advertising
+                            </h3>
+                            <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-mono">Ad Supported</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Native sponsored profiles or banner placements (e.g. Title Companies, Mortgage Brokers, Inspection services).
+                        </p>
+                        <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/50 text-[11px] text-slate-400 space-y-1">
+                            <div class="text-emerald-400 font-semibold"><i class="fa-solid fa-check"></i> Recommended UX Placement:</div>
+                            <div>In-feed non-intrusive native cards on Home and Discover screens, labeled clearly as "Sponsored Partner".</div>
+                        </div>
+                    </div>
+
+                    <!-- Option 3 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-sky-400 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-repeat"></i> 3. Subscription (Freemium)
+                            </h3>
+                            <span class="text-[10px] bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded font-mono">Recommended</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Free tier gives unlimited search and basic connections. "Pro Networker" tier ($14.99/mo) unlocks unlimited connection requests, verified badge, and priority placement.
+                        </p>
+                        <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/50 text-[11px] text-slate-400 space-y-1">
+                            <div class="text-sky-400 font-semibold"><i class="fa-solid fa-star"></i> High-Value UX Model:</div>
+                            <div>Allows organic community building in Elyria & Ohio while monetizing active high-volume realtors & lenders.</div>
+                        </div>
+                    </div>
+
+                    <!-- Option 4 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-bold text-sky-400 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-cart-shopping"></i> 4. In-App Purchases (Microtransactions)
+                            </h3>
+                            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded font-mono">Pay-per-Action</span>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Buy "Profile Boosts" for 24 hours of top search visibility, or purchase direct connection credits.
+                        </p>
+                        <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-700/50 text-[11px] text-slate-400 space-y-1">
+                            <div class="text-purple-400 font-semibold"><i class="fa-solid fa-bolt"></i> Flexible Monetization:</div>
+                            <div>Great option for casual users who do not want a monthly recurring commitment.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 5: CLIENT DISCOVERY FLAGS & QUESTIONNAIRE -->
+        <section id="tab-discovery" class="tab-content hidden">
+            <div class="bg-slate-800/60 border border-slate-700/60 rounded-2xl p-6 backdrop-blur space-y-6">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-question text-sky-400"></i> Client Requirements Discovery Flags
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-1">
+                        These critical questions must be confirmed with Chaynacie during planning before proceeding to production development.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Scope Category 1 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-users text-amber-400"></i> Target Audience & Access Rules
+                        </h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
+                            <li>Is networking strictly restricted to licensed professionals (e.g. state license required for Realtors/Lenders), or open to any user?</li>
+                            <li>Should property buyers and home sellers be permitted to join and contact professionals?</li>
+                            <li>Is the initial release target focused specifically on Northern Ohio / Elyria, or planned for immediate nationwide availability?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Scope Category 2 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-comments text-amber-400"></i> Social & Feature Scope
+                        </h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
+                            <li>Should users connect bidirectionally (like LinkedIn) or follow unidirectionally (like X/Twitter)?</li>
+                            <li>Is direct 1-on-1 messaging required for MVP, or should connections exchange external contact details (phone/email)?</li>
+                            <li>Should professionals be able to post social updates, articles, or market announcements in a feed?</li>
+                            <li>Are local real estate events, webinars, or group discussion boards part of the core vision?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Scope Category 3 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-building text-amber-400"></i> Property & Listing Scope
+                        </h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
+                            <li>Should professionals be allowed to feature property listings on their profiles or in search?</li>
+                            <li>Or should the application strictly avoid property listings to remain a pure professional networking platform?</li>
+                        </ul>
+                    </div>
+
+                    <!-- Scope Category 4 -->
+                    <div class="bg-slate-900 border border-slate-800 p-5 rounded-xl space-y-3">
+                        <h3 class="text-sm font-bold text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-sack-dollar text-amber-400"></i> Monetization Priority
+                        </h3>
+                        <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside leading-relaxed">
+                            <li>Which revenue stream should be prioritized for V1: Free app with Subscription, Sponsored Ads, or Paid Download?</li>
+                            <li>What exact benefits should be included in the paid subscription tier?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JavaScript Logic for Interactive Prototype Engine -->
+    <script>
+        // Tab Switcher Logic
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-sky-600', 'text-white', 'shadow-sm');
+                btn.classList.add('text-slate-400');
+            });
+
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            const activeBtn = document.getElementById('nav-btn-' + tabId);
+            activeBtn.classList.add('bg-sky-600', 'text-white', 'shadow-sm');
+            activeBtn.classList.remove('text-slate-400');
+        }
+
+        // Screen Data & Layout Renderer
+        const screens = {
+            splash: {
+                title: "1. Splash / Launch Screen",
+                type: "Confirmed Requirement",
+                spec: "<strong>Purpose:</strong> Brand introduction and clean initial application load state.<br><br><strong>UX Layout:</strong> Minimalist logo placeholder, high-trust real estate networking branding tagline, smooth auto-transition to Onboarding or Authentication depending on stored user session.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white flex flex-col items-center justify-between p-8 text-center select-none">
+                            <div class="w-full text-right">
+                                <span class="text-[10px] border border-slate-700 bg-slate-800 px-2 py-1 rounded text-slate-400 font-mono">v1.0 MVP Wireframe</span>
+                            </div>
+                            <div class="space-y-4 my-auto">
+                                <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-sky-500 to-indigo-600 mx-auto flex items-center justify-center text-3xl font-extrabold shadow-xl shadow-sky-500/20 border border-sky-400/30">
+                                    C
+                                </div>
+                                <div>
+                                    <h2 class="text-2xl font-bold tracking-tight">Chaynacie</h2>
+                                    <p class="text-xs text-sky-400 font-medium tracking-wide mt-1">Real Estate Professional Network</p>
+                                </div>
+                                <p class="text-xs text-slate-400 max-w-[220px] mx-auto leading-relaxed pt-2">
+                                    Discover, connect, and collaborate with real estate professionals.
+                                </p>
+                            </div>
+                            <div class="w-full space-y-3">
+                                <button onclick="loadScreen('onboarding')" class="w-full bg-sky-600 hover:bg-sky-500 text-white py-3 rounded-xl font-bold text-xs shadow-lg transition">
+                                    Get Started
+                                </button>
+                                <button onclick="loadScreen('auth')" class="w-full bg-slate-800 border border-slate-700 text-slate-300 py-2.5 rounded-xl text-xs font-semibold hover:bg-slate-700 transition">
+                                    Sign In
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            onboarding: {
+                title: "2. Onboarding Sequence",
+                type: "Logical UX Suggestion",
+                spec: "<strong>Purpose:</strong> Educate users on the app's value proposition within 3 quick cards.<br><br><strong>UX Components:</strong> Clean imagery placeholders, feature callouts, progress dots, and prominent 'Continue' / 'Skip' options.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-white p-6 flex flex-col justify-between select-none">
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs font-bold text-slate-400">Step 1 of 3</span>
+                                <button onclick="loadScreen('auth')" class="text-xs font-semibold text-slate-500 hover:text-slate-800">Skip</button>
+                            </div>
+                            <div class="my-auto text-center space-y-5">
+                                <div class="w-48 h-48 bg-slate-100 border-2 border-dashed border-slate-300 rounded-3xl mx-auto flex flex-col items-center justify-center text-slate-400">
+                                    <i class="fa-solid fa-users-viewfinder text-4xl mb-2 text-sky-500"></i>
+                                    <span class="text-[11px] font-medium">[ Illustration: Discovery ]</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <h3 class="text-lg font-bold text-slate-900">Discover Real Estate Pros</h3>
+                                    <p class="text-xs text-slate-500 leading-relaxed px-4">
+                                        Find verified Realtors, Brokers, Lenders, Investors, and Contractors in Elyria & across Ohio.
+                                    </p>
+                                </div>
+                                <div class="flex justify-center space-x-1.5 pt-2">
+                                    <div class="w-6 h-2 bg-sky-600 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-slate-300 rounded-full"></div>
+                                    <div class="w-2 h-2 bg-slate-300 rounded-full"></div>
+                                </div>
+                            </div>
+                            <button onclick="loadScreen('auth')" class="w-full bg-sky-600 hover:bg-sky-700 text-white py-3 rounded-xl font-bold text-xs transition shadow-md">
+                                Continue
+                            </button>
+                        </div>
+                    `;
+                }
+            },
+            auth: {
+                title: "3. Account Creation & Login",
+                type: "Requires Client Confirmation (Auth Method)",
+                spec: "<strong>Purpose:</strong> Flexible user authentication entry.<br><br><strong>UX Note:</strong> Does not force a specific provider until confirmed. Includes social sign-in placeholders and clean email/password fields.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-white p-6 flex flex-col justify-between select-none">
+                            <div>
+                                <div class="text-center my-4">
+                                    <div class="w-12 h-12 rounded-xl bg-sky-600 text-white font-bold text-xl flex items-center justify-center mx-auto mb-2">C</div>
+                                    <h2 class="text-lg font-bold text-slate-900">Welcome to Chaynacie</h2>
+                                    <p class="text-xs text-slate-500">Join the Real Estate Network</p>
+                                </div>
+
+                                <div class="space-y-3 mt-6">
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Email Address</label>
+                                        <input type="email" placeholder="name@company.com" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-sky-500 outline-none bg-slate-50">
+                                    </div>
+                                    <div>
+                                        <label class="block text-[11px] font-bold text-slate-700 mb-1">Password</label>
+                                        <input type="password" placeholder="••••••••" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-xs focus:ring-2 focus:ring-sky-500 outline-none bg-slate-50">
+                                    </div>
+                                    <div class="flex justify-end">
+                                        <a href="#" class="text-[11px] font-semibold text-sky-600 hover:underline">Forgot password?</a>
+                                    </div>
+                                    <button onclick="loadScreen('rolesetup')" class="w-full bg-sky-600 text-white py-2.5 rounded-xl text-xs font-bold shadow hover:bg-sky-700">
+                                        Create Account
+                                    </button>
+                                </div>
+
+                                <div class="relative my-6 text-center">
+                                    <hr class="border-slate-200">
+                                    <span class="bg-white px-2 text-[10px] text-slate-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">OR CONTINUE WITH</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="loadScreen('rolesetup')" class="border border-slate-300 p-2 rounded-lg text-xs font-medium text-slate-700 flex items-center justify-center gap-2 hover:bg-slate-50">
+                                        <i class="fa-brands fa-google text-red-500"></i> Google
+                                    </button>
+                                    <button onclick="loadScreen('rolesetup')" class="border border-slate-300 p-2 rounded-lg text-xs font-medium text-slate-700 flex items-center justify-center gap-2 hover:bg-slate-50">
+                                        <i class="fa-brands fa-apple text-slate-900"></i> Apple
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <p class="text-[10px] text-center text-slate-400">
+                                By continuing, you agree to Chaynacie's Terms of Service & Privacy Policy.
+                            </p>
+                        </div>
+                    `;
+                }
+            },
+            rolesetup: {
+                title: "4. Professional Role & Profile Setup",
+                type: "Modular Requirements Discovery Placeholder",
+                spec: "<strong>Purpose:</strong> Capture the user's primary professional taxonomy.<br><br><strong>UX Layout:</strong> Role radio tiles (Realtor, Broker, Investor, Lender, Property Manager, Contractor, Developer, Other), company name, Elyria/local location tag, and brief bio input.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-50 p-5 overflow-y-auto custom-scrollbar select-none space-y-4">
+                            <div>
+                                <h3 class="text-base font-bold text-slate-900">Identify Your Role</h3>
+                                <p class="text-xs text-slate-500">Select how you participate in the real estate ecosystem.</p>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <label class="border-2 border-sky-500 bg-sky-50 p-2.5 rounded-xl flex items-center gap-2 cursor-pointer font-semibold text-sky-900">
+                                    <input type="radio" name="role" checked class="text-sky-600"> Realtor
+                                </label>
+                                <label class="border border-slate-200 bg-white p-2.5 rounded-xl flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                                    <input type="radio" name="role" class="text-sky-600"> Broker
+                                </label>
+                                <label class="border border-slate-200 bg-white p-2.5 rounded-xl flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                                    <input type="radio" name="role" class="text-sky-600"> Lender / Mortgage
+                                </label>
+                                <label class="border border-slate-200 bg-white p-2.5 rounded-xl flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                                    <input type="radio" name="role" class="text-sky-600"> Real Estate Investor
+                                </label>
+                                <label class="border border-slate-200 bg-white p-2.5 rounded-xl flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                                    <input type="radio" name="role" class="text-sky-600"> Property Manager
+                                </label>
+                                <label class="border border-slate-200 bg-white p-2.5 rounded-xl flex items-center gap-2 cursor-pointer text-slate-700 font-medium">
+                                    <input type="radio" name="role" class="text-sky-600"> Contractor
+                                </label>
+                            </div>
+
+                            <div class="space-y-3 bg-white p-3.5 rounded-xl border border-slate-200 text-xs">
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Full Name</label>
+                                    <input type="text" value="Sarah Jenkins" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Company / Brokerage</label>
+                                    <input type="text" value="North Coast Realty Group" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
+                                </div>
+                                <div>
+                                    <label class="block font-bold text-slate-700 mb-1">Location</label>
+                                    <input type="text" value="Elyria, OH 44035" class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-xs bg-slate-50">
+                                </div>
+                            </div>
+
+                            <button onclick="loadScreen('home')" class="w-full bg-sky-600 hover:bg-sky-700 text-white py-3 rounded-xl font-bold text-xs transition shadow">
+                                Complete Profile & Start Networking
+                            </button>
+                        </div>
+                    `;
+                }
+            },
+            home: {
+                title: "5. Home / Networking Dashboard",
+                type: "Core Application Anchor Screen",
+                spec: "<strong>Purpose:</strong> Primary application hub.<br><br><strong>Key UX Rule:</strong> Focuses strictly on <em>people and professional relationships</em>, avoiding confusing property sales layouts. Includes search, recommended matches, nearby professionals in Elyria/Ohio, and recent networking activity.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-100 overflow-y-auto custom-scrollbar p-4 space-y-4 select-none">
+                            
+                            <!-- Header -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-9 h-9 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-xs">SJ</div>
+                                    <div>
+                                        <div class="text-[10px] text-slate-500">Welcome back,</div>
+                                        <div class="text-xs font-bold text-slate-900">Sarah Jenkins (Realtor)</div>
+                                    </div>
+                                </div>
+                                <button onclick="loadScreen('notifications')" class="w-8 h-8 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 relative">
+                                    <i class="fa-solid fa-bell text-xs"></i>
+                                    <span class="w-2 h-2 bg-red-500 rounded-full absolute top-1 right-1"></span>
+                                </button>
+                            </div>
+
+                            <!-- Search Trigger -->
+                            <div onclick="loadScreen('discover')" class="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center gap-2.5 text-slate-400 text-xs shadow-sm cursor-pointer">
+                                <i class="fa-solid fa-magnifying-glass text-sky-600"></i>
+                                <span>Search Realtors, Lenders, Investors in Ohio...</span>
+                            </div>
+
+                            <!-- Native Ad Placement Placeholder -->
+                            <div class="bg-gradient-to-r from-slate-900 to-sky-950 text-white p-3 rounded-xl text-xs space-y-1 relative border border-sky-800/40">
+                                <div class="flex justify-between items-center text-[9px] text-sky-400 font-mono uppercase tracking-wider">
+                                    <span>Sponsored Partner</span>
+                                    <span>Ad Placement</span>
+                                </div>
+                                <div class="font-bold">Elyria Title & Escrow Services</div>
+                                <p class="text-[10px] text-slate-300">Fast closing services for Lorain County real estate deals.</p>
+                            </div>
+
+                            <!-- Recommended Connections Horizontal Carousel -->
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="text-xs font-bold text-slate-800">Recommended Connections</h4>
+                                    <button onclick="loadScreen('discover')" class="text-[10px] font-bold text-sky-600">View All</button>
+                                </div>
+                                <div class="flex gap-2.5 overflow-x-auto pb-1 custom-scrollbar">
+                                    
+                                    <div class="min-w-[130px] bg-white border border-slate-200 p-3 rounded-xl text-center flex flex-col items-center justify-between space-y-2">
+                                        <div class="w-10 h-10 rounded-full bg-amber-100 text-amber-700 font-bold flex items-center justify-center text-xs border border-amber-300">MD</div>
+                                        <div>
+                                            <div class="font-bold text-[11px] text-slate-800 leading-tight">Marcus Vance</div>
+                                            <div class="text-[9px] text-slate-500">Commercial Lender</div>
+                                            <div class="text-[9px] text-sky-600">Elyria, OH</div>
+                                        </div>
+                                        <button onclick="loadScreen('connectflow')" class="w-full bg-sky-50 text-sky-700 border border-sky-200 py-1 rounded-lg text-[10px] font-bold hover:bg-sky-600 hover:text-white transition">
+                                            + Connect
+                                        </button>
+                                    </div>
+
+                                    <div class="min-w-[130px] bg-white border border-slate-200 p-3 rounded-xl text-center flex flex-col items-center justify-between space-y-2">
+                                        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center text-xs border border-emerald-300">ER</div>
+                                        <div>
+                                            <div class="font-bold text-[11px] text-slate-800 leading-tight">Elena Rostova</div>
+                                            <div class="text-[9px] text-slate-500">RE Investor</div>
+                                            <div class="text-[9px] text-sky-600">Cleveland, OH</div>
+                                        </div>
+                                        <button onclick="loadScreen('connectflow')" class="w-full bg-sky-50 text-sky-700 border border-sky-200 py-1 rounded-lg text-[10px] font-bold hover:bg-sky-600 hover:text-white transition">
+                                            + Connect
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Recent Networking Activity Feed -->
+                            <div class="space-y-2">
+                                <h4 class="text-xs font-bold text-slate-800">Recent Network Activity</h4>
+                                
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl space-y-2 text-xs">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-full bg-indigo-100 text-indigo-700 font-bold text-[10px] flex items-center justify-center">DB</div>
+                                        <div>
+                                            <span class="font-bold text-slate-800">David Brooks (Broker)</span>
+                                            <span class="text-slate-500 text-[10px] block">Connected with 3 Lenders in Lorain County</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl space-y-2 text-xs">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-7 h-7 rounded-full bg-purple-100 text-purple-700 font-bold text-[10px] flex items-center justify-center">TC</div>
+                                        <div>
+                                            <span class="font-bold text-slate-800">Tom Chen (General Contractor)</span>
+                                            <span class="text-slate-500 text-[10px] block">Updated availability for residential rehab projects</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    `;
+                }
+            },
+            discover: {
+                title: "6. Discover / Search & Filter",
+                type: "Core Networking Discovery Screen",
+                spec: "<strong>Purpose:</strong> Allows targeted exploration of professionals based on role, location, and specialization.<br><br><strong>UX Layout:</strong> Search bar, dynamic filter chips, and professional cards with instant 'Connect' call-to-actions.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-50 overflow-y-auto custom-scrollbar p-4 space-y-3 select-none">
+                            <!-- Search Header -->
+                            <div class="space-y-2">
+                                <div class="relative">
+                                    <input type="text" value="Lender in Elyria, OH" class="w-full pl-8 pr-3 py-2 bg-white border border-slate-300 rounded-xl text-xs font-medium focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+                                </div>
+                                <!-- Filter Chips -->
+                                <div class="flex gap-1.5 overflow-x-auto pb-1 text-[10px] font-semibold">
+                                    <span class="bg-sky-600 text-white px-2.5 py-1 rounded-full whitespace-nowrap">Role: All</span>
+                                    <span class="bg-white border border-slate-300 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap">Location: Elyria, OH</span>
+                                    <span class="bg-white border border-slate-300 text-slate-700 px-2.5 py-1 rounded-full whitespace-nowrap">Specialty</span>
+                                </div>
+                            </div>
+
+                            <!-- Search Result Cards -->
+                            <div class="space-y-2.5 pt-1">
+                                <!-- Card 1 -->
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl flex items-center justify-between shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-11 h-11 rounded-full bg-slate-800 text-white font-bold flex items-center justify-center text-xs">
+                                            MV
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-xs text-slate-900">Marcus Vance</div>
+                                            <div class="text-[10px] text-slate-500">Commercial & Residential Lender</div>
+                                            <div class="text-[10px] text-sky-600 font-medium">Apex Mortgage • Elyria, OH</div>
+                                        </div>
+                                    </div>
+                                    <button onclick="loadScreen('connectflow')" class="bg-sky-600 hover:bg-sky-700 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow">
+                                        Connect
+                                    </button>
+                                </div>
+
+                                <!-- Card 2 -->
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl flex items-center justify-between shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-11 h-11 rounded-full bg-indigo-600 text-white font-bold flex items-center justify-center text-xs">
+                                            ER
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-xs text-slate-900">Elena Rostova</div>
+                                            <div class="text-[10px] text-slate-500">Multi-Family Investor</div>
+                                            <div class="text-[10px] text-sky-600 font-medium">Cap Growth LLC • Lorain, OH</div>
+                                        </div>
+                                    </div>
+                                    <button onclick="loadScreen('profile')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-[10px] font-bold px-3 py-1.5 rounded-lg border border-slate-300">
+                                        View Profile
+                                    </button>
+                                </div>
+
+                                <!-- Card 3 -->
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl flex items-center justify-between shadow-sm">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-11 h-11 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">
+                                            TC
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-xs text-slate-900">Tom Chen</div>
+                                            <div class="text-[10px] text-slate-500">Licensed General Contractor</div>
+                                            <div class="text-[10px] text-sky-600 font-medium">BuildCraft • Elyria, OH</div>
+                                        </div>
+                                    </div>
+                                    <button onclick="loadScreen('connectflow')" class="bg-sky-600 hover:bg-sky-700 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg shadow">
+                                        Connect
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            profile: {
+                title: "7. Professional Profile View",
+                type: "Core Networking Profile Screen",
+                spec: "<strong>Purpose:</strong> Comprehensive business profile card designed to build professional trust.<br><br><strong>UX Layout:</strong> Hero profile header, connection status badge, professional biography, area of expertise tags, company details, and primary interaction CTAs.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-100 overflow-y-auto custom-scrollbar select-none">
+                            <!-- Hero Banner & Photo -->
+                            <div class="bg-slate-900 h-20 relative">
+                                <div class="w-16 h-16 rounded-2xl bg-sky-500 text-white font-bold text-xl flex items-center justify-center border-4 border-white absolute -bottom-8 left-4 shadow">
+                                    MV
+                                </div>
+                            </div>
+
+                            <div class="pt-10 px-4 pb-4 space-y-4">
+                                <div class="flex justify-between items-start">
+                                    <div>
+                                        <h3 class="text-base font-bold text-slate-900">Marcus Vance</h3>
+                                        <p class="text-xs text-sky-600 font-semibold">Commercial Mortgage Lender</p>
+                                        <p class="text-[10px] text-slate-500"><i class="fa-solid fa-building mr-1"></i> Apex Mortgage Corp • Elyria, OH</p>
+                                    </div>
+                                    <span class="bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                                        Verified Pro
+                                    </span>
+                                </div>
+
+                                <!-- CTAs -->
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="loadScreen('connectflow')" class="bg-sky-600 text-white py-2 rounded-xl text-xs font-bold shadow hover:bg-sky-700">
+                                        + Connect
+                                    </button>
+                                    <button onclick="loadScreen('messaging')" class="bg-white border border-slate-300 text-slate-700 py-2 rounded-xl text-xs font-bold hover:bg-slate-50">
+                                        Send Message
+                                    </button>
+                                </div>
+
+                                <!-- Bio -->
+                                <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-1.5 text-xs">
+                                    <h4 class="font-bold text-slate-800">About</h4>
+                                    <p class="text-slate-600 text-[11px] leading-relaxed">
+                                        Over 12 years helping real estate investors and brokers structure commercial and residential financing across Northern Ohio. Specializing in fast-turnaround rehab loans and multi-family underwriting.
+                                    </p>
+                                </div>
+
+                                <!-- Expertise Tags -->
+                                <div class="bg-white p-3.5 rounded-xl border border-slate-200 space-y-2 text-xs">
+                                    <h4 class="font-bold text-slate-800">Areas of Expertise</h4>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        <span class="bg-slate-100 text-slate-700 px-2 py-1 rounded text-[10px] font-medium">Commercial Financing</span>
+                                        <span class="bg-slate-100 text-slate-700 px-2 py-1 rounded text-[10px] font-medium">Rehab / DSCR Loans</span>
+                                        <span class="bg-slate-100 text-slate-700 px-2 py-1 rounded text-[10px] font-medium">Elyria Market</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            connectflow: {
+                title: "8. Connection Request Flow",
+                type: "Core Interaction State Machine",
+                spec: "<strong>Purpose:</strong> Demonstrates state transition from initial request to pending and accepted connection state.<br><br><strong>UX Component:</strong> Interactive modal overlay showing how users customize connection requests.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-900/60 p-4 flex items-center justify-center select-none relative">
+                            <div class="bg-white w-full rounded-2xl p-4 space-y-4 shadow-2xl border border-slate-200 text-slate-900">
+                                <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                                    <h3 class="font-bold text-xs flex items-center gap-1.5 text-slate-800">
+                                        <i class="fa-solid fa-user-plus text-sky-600"></i> Connect with Marcus Vance
+                                    </h3>
+                                    <button onclick="loadScreen('home')" class="text-slate-400 hover:text-slate-600 text-xs">✕</button>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <p class="text-[11px] text-slate-600">
+                                        Add a personal note to introduce yourself and state your networking goal:
+                                    </p>
+                                    <textarea rows="3" class="w-full p-2.5 border border-slate-300 rounded-xl text-xs bg-slate-50 focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Hi Marcus, I'm a Realtor based in Elyria looking to connect with reliable commercial lenders..."></textarea>
+                                </div>
+
+                                <div class="bg-sky-50 p-2.5 rounded-xl border border-sky-200 text-[10px] text-sky-800 flex items-center gap-2">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <span>Once accepted, Marcus will receive your direct messaging access.</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-2 pt-1">
+                                    <button onclick="loadScreen('home')" class="bg-slate-100 text-slate-600 py-2 rounded-xl text-xs font-bold hover:bg-slate-200">
+                                        Cancel
+                                    </button>
+                                    <button onclick="alert('Connection Request Sent!'); loadScreen('home');" class="bg-sky-600 text-white py-2 rounded-xl text-xs font-bold shadow hover:bg-sky-700">
+                                        Send Request
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            messaging: {
+                title: "9. Messaging / Communication Hub",
+                type: "Proposed Feature (Scope Confirmation Required)",
+                spec: "<strong>Purpose:</strong> Unlocks direct 1-on-1 dialogue between accepted connections.<br><br><strong>UX Note:</strong> Labelled explicitly as pending client confirmation regarding advanced communication requirements (media, files, groups).",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-white flex flex-col justify-between select-none">
+                            <!-- Top Chat Bar -->
+                            <div class="p-3 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center">MV</div>
+                                    <div>
+                                        <div class="font-bold text-xs text-slate-900">Marcus Vance</div>
+                                        <div class="text-[9px] text-emerald-600 flex items-center gap-1">
+                                            <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Active Now
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] bg-slate-200 text-slate-600 px-2 py-0.5 rounded font-mono">Connected</span>
+                            </div>
+
+                            <!-- Messages Content -->
+                            <div class="p-3 space-y-3 overflow-y-auto custom-scrollbar text-xs">
+                                <div class="text-center">
+                                    <span class="text-[9px] bg-slate-100 text-slate-400 px-2 py-0.5 rounded-full">Connection Accepted • Today 10:15 AM</span>
+                                </div>
+
+                                <div class="bg-slate-100 text-slate-800 p-2.5 rounded-2xl max-w-[80%] rounded-tl-none space-y-1">
+                                    <p class="text-[11px]">Hi Sarah, thanks for connecting! Always glad to network with Elyria Realtors.</p>
+                                    <span class="text-[8px] text-slate-400 block text-right">10:16 AM</span>
+                                </div>
+
+                                <div class="bg-sky-600 text-white p-2.5 rounded-2xl max-w-[80%] ml-auto rounded-tr-none space-y-1">
+                                    <p class="text-[11px]">Hi Marcus! I have a client looking for commercial rehab lending options in Lorain County. Would love to chat.</p>
+                                    <span class="text-[8px] text-sky-200 block text-right">10:18 AM</span>
+                                </div>
+                            </div>
+
+                            <!-- Input Bar -->
+                            <div class="p-2.5 border-t border-slate-200 flex items-center gap-2 bg-slate-50">
+                                <input type="text" placeholder="Type a message..." class="flex-1 bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-sky-500">
+                                <button class="w-8 h-8 rounded-xl bg-sky-600 text-white flex items-center justify-center text-xs shadow">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            notifications: {
+                title: "10. Notification Center",
+                type: "Logical UX Suggestion",
+                spec: "<strong>Purpose:</strong> Keeps users informed of connection requests, acceptances, and messaging activity.<br><br><strong>UX Layout:</strong> Tabbed list for requests vs. general networking activity.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-50 p-4 space-y-3 select-none overflow-y-auto custom-scrollbar">
+                            <div class="flex justify-between items-center">
+                                <h3 class="font-bold text-sm text-slate-900">Notifications</h3>
+                                <span class="text-[10px] text-sky-600 font-semibold cursor-pointer">Mark all as read</span>
+                            </div>
+
+                            <div class="space-y-2 text-xs">
+                                <div class="bg-sky-50 border border-sky-200 p-3 rounded-xl flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">ER</div>
+                                        <div>
+                                            <div class="text-slate-800 font-semibold"><span class="font-bold">Elena Rostova</span> accepted your connection request.</div>
+                                            <div class="text-[9px] text-slate-400">12 mins ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-white border border-slate-200 p-3 rounded-xl flex items-center justify-between">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center text-xs">MV</div>
+                                        <div>
+                                            <div class="text-slate-800"><span class="font-bold">Marcus Vance</span> sent you a direct message.</div>
+                                            <div class="text-[9px] text-slate-400">1 hour ago</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            monetization: {
+                title: "11. Monetization / Premium Paywall Concept",
+                type: "Flexible Architecture Concept",
+                spec: "<strong>Purpose:</strong> Demonstrates premium subscription conversion UX without disrupting core free networking.<br><br><strong>Features:</strong> Subscription comparison tier card, benefit highlights (unlimited requests, pro badge, featured search ranking).",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-900 text-white p-5 flex flex-col justify-between select-none overflow-y-auto custom-scrollbar">
+                            <div class="text-center space-y-2 mt-2">
+                                <span class="bg-gradient-to-r from-amber-400 to-sky-400 text-slate-950 font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                                    Chaynacie Pro Networker
+                                </span>
+                                <h2 class="text-xl font-extrabold tracking-tight">Accelerate Your Network</h2>
+                                <p class="text-xs text-slate-400">Unlock unlimited connections and top profile exposure across Ohio.</p>
+                            </div>
+
+                            <div class="bg-slate-800/80 border border-slate-700/80 rounded-2xl p-4 my-4 space-y-3">
+                                <div class="text-center pb-2 border-b border-slate-700">
+                                    <span class="text-2xl font-extrabold">$14.99</span>
+                                    <span class="text-xs text-slate-400"> / month</span>
+                                </div>
+
+                                <ul class="space-y-2 text-xs text-slate-300">
+                                    <li class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400"></i> Unlimited connection requests
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400"></i> Verified Professional Badge
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400"></i> Top placement in local search
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <i class="fa-solid fa-circle-check text-sky-400"></i> Ad-free networking experience
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="space-y-2">
+                                <button onclick="alert('Subscription feature pending client confirmation.'); loadScreen('home');" class="w-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white py-3 rounded-xl font-bold text-xs shadow-lg">
+                                    Start 14-Day Free Trial
+                                </button>
+                                <button onclick="loadScreen('home')" class="w-full text-slate-400 text-[11px] hover:underline">
+                                    Continue with Free Basic Plan
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            },
+            settings: {
+                title: "12. Account & App Settings",
+                type: "Standard System Screen",
+                spec: "<strong>Purpose:</strong> Account management, profile edits, privacy preferences, billing details, and support.<br><br><strong>UX Layout:</strong> Grouped settings list.",
+                render: function() {
+                    return `
+                        <div class="flex-1 bg-slate-50 p-4 space-y-4 select-none overflow-y-auto custom-scrollbar text-xs">
+                            <h3 class="font-bold text-sm text-slate-900">Settings & Account</h3>
+
+                            <div class="bg-white border border-slate-200 rounded-xl divide-y divide-slate-100 text-slate-700">
+                                <div class="p-3 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+                                    <span><i class="fa-solid fa-user-pen mr-2 text-sky-600"></i> Edit Profile Information</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                                </div>
+                                <div onclick="loadScreen('monetization')" class="p-3 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+                                    <span><i class="fa-solid fa-crown mr-2 text-amber-500"></i> Subscription & Billing</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                                </div>
+                                <div class="p-3 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+                                    <span><i class="fa-solid fa-shield-halved mr-2 text-slate-500"></i> Privacy & Permissions</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                                </div>
+                                <div class="p-3 flex items-center justify-between hover:bg-slate-50 cursor-pointer">
+                                    <span><i class="fa-solid fa-bell mr-2 text-slate-500"></i> Push Notifications</span>
+                                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+                                </div>
+                            </div>
+
+                            <button onclick="loadScreen('auth')" class="w-full bg-red-50 border border-red-200 text-red-600 py-2.5 rounded-xl font-bold text-xs hover:bg-red-100">
+                                Log Out
+                            </button>
+                        </div>
+                    `;
+                }
+            }
+        };
+
+        // Load Screen Engine
+        function loadScreen(screenKey) {
+            const data = screens[screenKey];
+            if (!data) return;
+
+            // Render Mobile Content
+            document.getElementById('phone-screen-content').innerHTML = data.render();
+
+            // Render Specs
+            document.getElementById('spec-title').innerText = data.title;
+            document.getElementById('spec-body').innerHTML = `
+                <div><span class="flag-tag bg-sky-500/20 text-sky-300 border border-sky-500/30">${data.type}</span></div>
+                <div class="mt-2">${data.spec}</div>
+            `;
+
+            // Highlight Screen Button Sidebar
+            document.querySelectorAll('.scr-selector').forEach(btn => {
+                btn.classList.remove('bg-sky-900/40', 'border-sky-500/50', 'text-white');
+            });
+            const activeScrBtn = document.getElementById('scr-btn-' + screenKey);
+            if(activeScrBtn) {
+                activeScrBtn.classList.add('bg-sky-900/40', 'border-sky-500/50', 'text-white');
+            }
+
+            // Bottom Nav Visibility Rule
+            const bottomNav = document.getElementById('phone-bottom-nav');
+            if (['splash', 'onboarding', 'auth', 'rolesetup', 'monetization'].includes(screenKey)) {
+                bottomNav.classList.add('hidden');
+            } else {
+                bottomNav.classList.remove('hidden');
+            }
+
+            // Highlight Active Bottom Nav Item
+            document.querySelectorAll('#phone-bottom-nav button').forEach(b => b.classList.remove('text-sky-600'));
+            const navMap = { home: 'home', discover: 'discover', connectflow: 'connections', messaging: 'messages', profile: 'profile' };
+            if (navMap[screenKey]) {
+                const navBtn = document.getElementById('nav-item-' + navMap[screenKey]);
+                if (navBtn) navBtn.classList.add('text-sky-600');
+            }
+        }
+
+        // Initialize default screen on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            loadScreen('home');
+        });
+    </script>
+
+</body>
+</html>
